@@ -82,7 +82,8 @@ export const lookbooks = [
     title: 'A shade of blue made for quiet confidence',
     colour: 'Indigo',
     tone: '#233a86',
-    images: ['indigo-1', 'indigo-2', 'indigo-3', 'indigo-4', 'indigo-5', 'indigo-6'],
+    ink: '#f2ebdd',
+    images: ['indigo-1', 'indigo-3', 'indigo-4', 'indigo-5', 'indigo-6'],
     credit: 'Model @phiba_syiemmm · Photography @elvis_jones_photographer',
   },
   {
@@ -90,7 +91,8 @@ export const lookbooks = [
     title: 'The kind of colour that makes you look twice',
     colour: 'Lavender pink',
     tone: '#c79ab8',
-    images: ['lavender-1', 'lavender-2', 'lavender-3', 'lavender-4', 'lavender-5', 'lavender-6', 'lavender-7', 'lavender-8'],
+    ink: '#1d1712',
+    images: ['lavender-1', 'lavender-3', 'lavender-5', 'lavender-6', 'lavender-8'],
     credit: 'From the lavender pink Jainsem shoot · Model @hadasa_ramde on the reel',
   },
 ]

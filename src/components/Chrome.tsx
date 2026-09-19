@@ -60,9 +60,14 @@ function Nav() {
             <button
               type="button"
               onClick={() => setBagOpen(true)}
-              className="flex min-h-11 items-center gap-2 rounded-full bg-ink px-4 text-sm font-medium text-ecru shadow-[0_8px_30px_-16px_rgb(29_23_18/0.8)] transition-colors hover:bg-madder sm:px-5"
+              className="flex min-h-11 items-center gap-2 rounded-full bg-ink px-4 text-sm font-medium text-ecru shadow-[0_8px_30px_-16px_rgb(29_23_18/0.8)] ring-1 ring-ecru/35 transition-colors hover:bg-madder sm:px-5"
               data-cursor="Your list"
+              aria-label={`Your enquiry, ${items.length} piece${items.length === 1 ? '' : 's'}`}
             >
+              <svg aria-hidden viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round">
+                <path d="M5 8h14l-1.2 12H6.2Z" />
+                <path d="M9 8a3 3 0 0 1 6 0" />
+              </svg>
               <span className="max-sm:sr-only">Enquiry</span>
               <span data-bag-count className="grid min-w-6 place-items-center rounded-full bg-ecru px-1.5 font-mono text-xs text-ink">
                 {items.length}
@@ -150,6 +155,18 @@ function MotionToggle() {
 function FloatingEnquire() {
   const { items, setBagOpen } = useEnquiry()
   const channel = enquiryChannel()
+  const [hide, setHide] = useState(true)
+  useEffect(() => {
+    const phone = window.matchMedia('(max-width: 767px)').matches
+    const watch = [document.getElementById('top'), document.querySelector('footer'), phone ? document.querySelector('#collection ul') : null].filter(Boolean) as Element[]
+    const on = new Set<Element>()
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => (e.isIntersecting ? on.add(e.target) : on.delete(e.target)))
+      setHide(on.size > 0)
+    })
+    watch.forEach((el) => io.observe(el))
+    return () => io.disconnect()
+  }, [])
   return (
     <a
       href={enquiryHref(messageFor([]))}
@@ -162,15 +179,13 @@ function FloatingEnquire() {
         }
       }}
       data-fab
-      aria-label={items.length ? 'Open your enquiry list' : `Ask us on ${channel}`}
-      className="group fixed right-5 bottom-5 z-[96] grid size-16 place-items-center rounded-full bg-madder text-ecru shadow-[0_18px_40px_-14px_rgb(122_31_26/0.9)] transition-transform hover:scale-105 sm:right-8 sm:bottom-8"
+      aria-label={items.length ? 'Open your enquiry list' : `Ask on ${channel}`}
+      tabIndex={hide ? -1 : 0}
+      className={`group fixed right-4 bottom-4 z-[96] grid size-14 place-items-center rounded-full bg-madder text-ecru shadow-[0_18px_40px_-14px_rgb(122_31_26/0.9)] transition-[transform,opacity] duration-500 hover:scale-105 sm:right-8 sm:bottom-8 sm:size-16 ${hide ? 'pointer-events-none translate-y-6 scale-75 opacity-0' : ''}`}
       data-cursor="Ask us"
     >
       <span aria-hidden className="absolute inset-0 animate-ping rounded-full bg-madder/40 [animation-duration:2.4s]" />
       {channel === 'WhatsApp' ? <WhatsApp className="relative size-7" /> : <Instagram className="relative size-7" />}
-      {items.length > 0 && (
-        <span className="absolute -top-1 -right-1 grid size-6 place-items-center rounded-full bg-ink font-mono text-xs text-ecru">{items.length}</span>
-      )}
     </a>
   )
 }
@@ -270,9 +285,12 @@ function Bag() {
             {items.length ? `Send on ${channel}` : `Ask us on ${channel}`}
           </a>
           {channel !== 'WhatsApp' && (
-            <p className="text-center text-sm text-ink-soft" aria-live="polite">
-              {copied ? 'Your message is copied. Paste it into the chat.' : 'We copy your message so you can paste it into the chat.'}
-            </p>
+            <div className="grid gap-2">
+              <p className={`rounded-xl px-4 py-3 text-sm ${copied ? 'bg-leaf text-ecru' : 'bg-lilac-soft text-ink'}`} aria-live="polite">
+                {copied ? 'Message copied. Paste it into the Instagram chat that just opened.' : 'Tapping send copies this message for you to paste into our Instagram chat:'}
+              </p>
+              <pre className="max-h-28 overflow-y-auto rounded-xl bg-card px-4 py-3 font-sans text-xs whitespace-pre-wrap text-ink-soft">{message}</pre>
+            </div>
           )}
           {items.length > 0 && (
             <button type="button" onClick={clear} className="text-sm text-ink-soft underline underline-offset-4 hover:text-madder">
@@ -347,7 +365,7 @@ function PieceSheet() {
                 </div>
               </dl>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="sticky bottom-0 -mx-6 grid gap-3 border-t border-ink/10 bg-ecru px-6 py-4 sm:static sm:mx-0 sm:grid-cols-2 sm:border-0 sm:p-0">
               <button type="button" onClick={() => toggle(p.no)} aria-pressed={has(p.no)} className={`btn ${has(p.no) ? 'btn-ecru ring-1 ring-ink' : 'btn-ink'}`}>
                 {has(p.no) ? 'Added to your list ✓' : 'Add to enquiry'}
               </button>

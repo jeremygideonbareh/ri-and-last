@@ -158,7 +158,7 @@ export function Collection() {
           </div>
         </div>
 
-        <ul ref={grid} className="mt-10 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-3 xl:grid-cols-4" data-weave>
+        <ul ref={grid} className="mt-10 flex flex-wrap justify-center gap-x-4 gap-y-10 sm:gap-x-6" data-weave>
           {jainsem.map((p) => (
             <PieceCard key={p.no} p={p} hidden={!shown.has(p.no)} />
           ))}
@@ -185,7 +185,7 @@ function PieceCard({ p, hidden }: { p: Piece; hidden: boolean }) {
     card.current?.style.setProperty('--rx', '0deg')
   }
   return (
-    <li data-piece hidden={hidden}>
+    <li data-piece hidden={hidden} className="w-[calc(50%-0.5rem)] sm:w-[calc(50%-0.75rem)] md:w-[calc(33.333%-1rem)] xl:w-[calc(25%-1.125rem)]">
       <div ref={card} onPointerMove={onMove} onPointerLeave={onLeave} className="piece-card group">
         <button type="button" onClick={() => show(p)} className="relative block w-full overflow-hidden rounded-[1.25rem] bg-ecru text-left" data-cursor="View" aria-label={`View Jainsem No. ${p.no}, ${p.name}`}>
           <Picture name={p.image} alt="" sizes="(min-width: 1280px) 22vw, (min-width: 768px) 30vw, 46vw" className="piece-img aspect-[11/20] w-full object-cover" />
@@ -193,10 +193,10 @@ function PieceCard({ p, hidden }: { p: Piece; hidden: boolean }) {
           <span className="absolute top-3 left-3 font-display text-[clamp(2rem,4vw,3.4rem)] leading-none text-ink/85 mix-blend-multiply">{p.no}</span>
         </button>
         <div className="mt-4 flex items-start justify-between gap-3">
-          <div>
-            <p className="font-display text-xl leading-tight sm:text-2xl">{p.name}</p>
-            <p className="mt-1 flex items-center gap-2 font-mono text-[0.68rem] tracking-[0.14em] text-ink-soft uppercase">
-              <span className="size-2.5 rounded-full" style={{ background: p.swatch }} /> Price on enquiry
+          <div className="min-w-0">
+            <p className="truncate font-display text-lg leading-tight sm:text-2xl">{p.name}</p>
+            <p className="mt-1 flex items-center gap-2 font-mono text-[0.66rem] tracking-[0.08em] whitespace-nowrap text-ink-soft uppercase sm:tracking-[0.14em]">
+              <span className="size-2.5 shrink-0 rounded-full" style={{ background: p.swatch }} /> On enquiry
             </p>
           </div>
           <button
@@ -300,7 +300,7 @@ export function Film() {
               Pick a number <Arrow className="size-4" />
             </a>
             <a href={brand.instagram} target="_blank" rel="noopener" className="btn btn-line" data-magnet>
-              <Instagram className="size-4" /> Instagram
+              <Instagram className="size-4" /> See more on Instagram
             </a>
           </div>
         </div>
@@ -315,18 +315,18 @@ export function Lookbook() {
   return (
     <section id="lookbook" data-hscroll className="relative overflow-hidden bg-indigo text-ecru" aria-labelledby="lookbook-title">
       <div className="flex h-[100svh] items-center">
-        <div data-htrack className="flex items-center gap-6 px-5 sm:gap-10 sm:px-12">
+        <div data-htrack className="flex w-max items-center gap-6 px-5 sm:gap-10 sm:px-12">
           <div className="w-[82vw] shrink-0 sm:w-[46vw] lg:w-[34vw]">
             <p className="eyebrow text-turmeric">Lookbook</p>
             <h2 id="lookbook-title" className="mt-6 text-[clamp(3rem,7vw,7rem)]">
               Two shades, <em>two stories.</em>
             </h2>
-            <p className="mt-6 max-w-sm text-ecru/85">Scroll to walk through the indigo and lavender pink Jainsem shoots.</p>
+            <p className="mt-6 max-w-sm opacity-85">Scroll to walk through the indigo and lavender pink Jainsem shoots.</p>
           </div>
           {lookbooks.map((lb) => (
             <LookbookRun key={lb.id} lb={lb} />
           ))}
-          <div className="w-[70vw] shrink-0 sm:w-[34vw]">
+          <div className="w-[78vw] shrink-0 pr-[6vw] sm:w-[34vw]">
             <p className="font-display text-[clamp(2.4rem,5vw,4.6rem)] leading-none">Want the look?</p>
             <a href="#collection" className="btn btn-ecru mt-8" data-magnet>
               See the collection <Arrow className="size-4" />
@@ -341,13 +341,13 @@ export function Lookbook() {
 function LookbookRun({ lb }: { lb: (typeof lookbooks)[number] }) {
   return (
     <>
-      <div data-lb-tone={lb.tone} className="flex w-[74vw] shrink-0 flex-col justify-between self-stretch py-[14vh] sm:w-[30vw] lg:w-[22vw]">
+      <div data-lb-tone={lb.tone} data-lb-ink={lb.ink} className="flex w-[74vw] shrink-0 flex-col justify-between self-stretch py-[14vh] sm:w-[30vw] lg:w-[22vw]">
         <p className="font-mono text-xs tracking-[0.24em] uppercase opacity-80">{lb.colour}</p>
         <p className="font-display text-[clamp(2rem,3.6vw,3.4rem)] leading-[1.02]">{lb.title}</p>
-        <p className="text-xs text-ecru/75">{lb.credit}</p>
+        <p className="text-xs opacity-75">{lb.credit}</p>
       </div>
       {lb.images.map((name, i) => (
-        <figure key={name} className={`shrink-0 overflow-hidden rounded-[1.25rem] ${i % 3 === 1 ? 'h-[58svh]' : 'h-[74svh]'}`} data-lb-img>
+        <figure key={name} className={`shrink-0 overflow-hidden rounded-[1.25rem] ${i % 3 === 1 ? 'h-[46svh] sm:h-[58svh]' : 'h-[54svh] sm:h-[74svh]'}`} data-lb-img>
           <Picture name={name} alt={`${lb.colour} Eri silk Jainsem, lookbook photo ${i + 1}`} sizes="40vw" className="h-full w-auto max-w-none object-cover" />
         </figure>
       ))}
@@ -411,13 +411,13 @@ export function Craft() {
 export function Award() {
   return (
     <section id="award" data-award className="relative overflow-hidden bg-ink py-24 text-ecru sm:py-32" aria-labelledby="award-title">
-      <div aria-hidden data-award-light className="pointer-events-none absolute top-0 left-0 size-[40rem] rounded-full bg-[radial-gradient(circle,rgb(217_150_43/0.35)_0%,transparent_62%)] max-lg:hidden" />
+      <div aria-hidden data-award-light className="pointer-events-none absolute top-[4%] left-[2%] size-[40rem] rounded-full bg-[radial-gradient(circle,rgb(217_150_43/0.35)_0%,transparent_62%)] max-lg:hidden" />
       <div className="wrap relative grid items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
         <div className="relative mx-auto w-full max-w-[26rem]">
           <div className="overflow-hidden rounded-[1.5rem]" data-wipe>
             <Picture name="award-trophy" alt="The Gold Winner trophy for Cultural Ambassador" sizes="(min-width: 1024px) 30vw, 90vw" className="aspect-square w-full object-cover" />
           </div>
-          <div className="absolute -right-6 -bottom-10 w-[48%] rotate-3 overflow-hidden rounded-xl border-4 border-ecru shadow-2xl sm:-right-12" data-tilt>
+          <div className="absolute right-0 -bottom-10 w-[48%] rotate-3 overflow-hidden rounded-xl border-4 border-ecru shadow-2xl sm:-right-12" data-tilt>
             <Picture name="award-certificate" alt="The Indian Responsible Tourism State Awards 2025 certificate" sizes="20vw" className="aspect-square w-full object-cover" />
           </div>
         </div>
@@ -485,7 +485,7 @@ export function Visit() {
               </div>
             ))}
           </div>
-          <div className="flex flex-col justify-between gap-10 rounded-[1.5rem] bg-ink p-8 text-ecru sm:p-10">
+          <div className="flex flex-col gap-10 self-start rounded-[1.5rem] bg-ink p-8 text-ecru sm:p-10">
             <div>
               <p className="font-mono text-xs tracking-[0.2em] text-turmeric uppercase">The showroom</p>
               <p className="mt-3 font-display text-4xl leading-tight">{brand.full}</p>
@@ -504,7 +504,7 @@ export function Visit() {
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
               <a href={enquiryHref(messageFor([]))} target="_blank" rel="noopener" className="btn btn-madder" data-magnet>
-                {enquiryChannel() === 'WhatsApp' ? <WhatsApp className="size-4" /> : <Instagram className="size-4" />} Message us
+                {enquiryChannel() === 'WhatsApp' ? <WhatsApp className="size-4" /> : <Instagram className="size-4" />} Ask on {enquiryChannel()}
               </a>
               <a href={brand.maps} target="_blank" rel="noopener" className="btn btn-line-light" data-magnet>
                 Find us on the map

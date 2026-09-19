@@ -172,7 +172,7 @@ function wipes() {
     const from = i % 2 ? 'inset(0 0 0 100%)' : 'inset(0 100% 0 0)'
     const img = el.querySelector('img')
     const tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 88%', once: true } })
-    tl.fromTo(el, { clipPath: from }, { clipPath: 'inset(0 0% 0 0%)', duration: 1.2, ease: 'expo.inOut' })
+    tl.fromTo(el, { clipPath: from }, { clipPath: 'inset(0 0% 0 0%)', duration: 1.2, ease: 'expo.inOut', clearProps: 'clipPath' })
     if (img) tl.fromTo(img, { scale: 1.3 }, { scale: 1, duration: 1.8, ease: 'expo.out' }, 0.2)
   })
 }
@@ -245,8 +245,8 @@ function lookbook() {
       trigger: panel,
       containerAnimation: tween,
       start: 'left 60%',
-      onEnter: () => gsap.to(section, { backgroundColor: panel.dataset.lbTone, duration: 1.2, ease: 'power2.out' }),
-      onLeaveBack: () => gsap.to(section, { backgroundColor: '#233a86', duration: 1.2, ease: 'power2.out' }),
+      onEnter: () => gsap.to(section, { backgroundColor: panel.dataset.lbTone, color: panel.dataset.lbInk, duration: 1.2, ease: 'power2.out' }),
+      onLeaveBack: () => gsap.to(section, { backgroundColor: '#233a86', color: '#f2ebdd', duration: 1.2, ease: 'power2.out' }),
     })
   })
   q('[data-lb-img]', section).forEach((fig) => {
