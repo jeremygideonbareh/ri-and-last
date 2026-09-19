@@ -10,7 +10,7 @@ export function Chrome() {
       <div className="grain-wrap" aria-hidden>
         <div className="grain" />
       </div>
-      <div aria-hidden className="fixed inset-x-0 top-0 z-[95] h-[3px] origin-left scale-x-0 bg-madder" data-progress />
+      <div aria-hidden className="fixed inset-x-0 top-0 z-[101] h-[3px] origin-left scale-x-0 bg-madder" data-progress />
       <Cursor />
       <Nav />
       <FloatingEnquire />
@@ -158,7 +158,7 @@ function FloatingEnquire() {
   const channel = enquiryChannel()
   const [hide, setHide] = useState(true)
   useEffect(() => {
-    const watch = [document.getElementById('top'), document.querySelector('footer'), document.querySelector('#collection ul'), document.getElementById('visit')].filter(Boolean) as Element[]
+    const watch = [document.getElementById('top'), document.querySelector('footer'), document.getElementById('collection'), document.getElementById('film'), document.getElementById('visit')].filter(Boolean) as Element[]
     const on = new Set<Element>()
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => (e.isIntersecting ? on.add(e.target) : on.delete(e.target)))

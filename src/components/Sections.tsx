@@ -194,7 +194,7 @@ function PieceCard({ p, hidden }: { p: Piece; hidden: boolean }) {
         </button>
         <div className="mt-4 flex items-start justify-between gap-3">
           <div className="min-w-0">
-            <p className="truncate font-display text-lg leading-tight sm:text-2xl">{p.name}</p>
+            <p className="line-clamp-2 min-h-[2.5em] font-display text-lg leading-tight sm:min-h-0 sm:truncate sm:text-2xl">{p.name}</p>
             <p className="mt-1 flex items-center gap-2 font-mono text-[0.66rem] tracking-[0.08em] whitespace-nowrap text-ink-soft uppercase sm:tracking-[0.14em]">
               <span className="size-2.5 shrink-0 rounded-full" style={{ background: p.swatch }} /> On enquiry
             </p>
@@ -316,7 +316,7 @@ export function Lookbook() {
     <section id="lookbook" data-hscroll className="relative overflow-hidden bg-indigo text-ecru" aria-labelledby="lookbook-title">
       <div className="flex h-[100svh] items-center">
         <div data-htrack className="flex w-max items-center gap-6 px-5 sm:gap-10 sm:px-12">
-          <div className="w-[82vw] shrink-0 sm:w-[46vw] lg:w-[34vw]">
+          <div className="w-[calc(100vw-2.5rem)] shrink-0 sm:w-[46vw] lg:w-[34vw]">
             <p className="eyebrow text-turmeric">Lookbook</p>
             <h2 id="lookbook-title" className="mt-6 text-[clamp(3rem,7vw,7rem)]">
               Two shades, <em>two stories.</em>
@@ -341,13 +341,13 @@ export function Lookbook() {
 function LookbookRun({ lb }: { lb: (typeof lookbooks)[number] }) {
   return (
     <>
-      <div data-lb-tone={lb.tone} data-lb-ink={lb.ink} className="flex w-[74vw] shrink-0 flex-col justify-between self-stretch py-[14vh] sm:w-[30vw] lg:w-[22vw]">
+      <div data-lb-tone={lb.tone} data-lb-ink={lb.ink} className="flex w-[calc(100vw-2.5rem)] shrink-0 flex-col justify-between self-stretch py-[14vh] sm:w-[30vw] lg:w-[22vw]">
         <p className="font-mono text-xs tracking-[0.24em] uppercase opacity-80">{lb.colour}</p>
         <p className="font-display text-[clamp(2rem,3.6vw,3.4rem)] leading-[1.02]">{lb.title}</p>
         <p className="text-xs opacity-75">{lb.credit}</p>
       </div>
       {lb.images.map((name, i) => (
-        <figure key={name} className={`shrink-0 overflow-hidden rounded-[1.25rem] ${i % 3 === 1 ? 'h-[46svh] sm:h-[58svh]' : 'h-[54svh] sm:h-[74svh]'}`} data-lb-img>
+        <figure key={name} className={`shrink-0 overflow-hidden rounded-[1.25rem] ${i % 3 === 1 ? 'h-[50svh] sm:h-[58svh]' : 'h-[56svh] sm:h-[74svh]'}`} data-lb-img>
           <Picture name={name} alt={`${lb.colour} Eri silk Jainsem, lookbook photo ${i + 1}`} sizes="40vw" className="h-full w-auto max-w-none object-cover" />
         </figure>
       ))}
