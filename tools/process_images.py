@@ -30,6 +30,9 @@ REEL = os.path.join(ROOT, 'source-photos', 'reel')
 for f in sorted(os.listdir(REEL)):
     NAMES[f[:-4]] = os.path.join('..', 'reel', f)
 
+# The trophy, cropped and graded (source-photos/edited)
+NAMES['award-trophy'] = os.path.join('..', 'edited', 'award-trophy.jpg')  # award-trophy-edited
+
 manifest = {}
 for name, file in NAMES.items():
     im = ImageOps.exif_transpose(Image.open(os.path.join(SRC, file))).convert('RGB')

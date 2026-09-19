@@ -249,10 +249,9 @@
  "award-trophy": {
   "widths": [
    480,
-   800,
-   1280
+   800
   ],
-  "ratio": 1.0
+  "ratio": 0.6528
  },
  "shawl-motif-pink": {
   "widths": [

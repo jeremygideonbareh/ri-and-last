@@ -94,6 +94,9 @@ function heroScroll() {
 
 function progress() {
   gsap.to('[data-progress]', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } })
+  const scrim = document.querySelector('[data-header-scrim]')
+  if (scrim)
+    ScrollTrigger.create({ trigger: '[data-hero]', start: 'bottom 80px', onToggle: (self) => gsap.to(scrim, { opacity: self.isActive ? 1 : 0, duration: 0.4 }), end: 'max' })
 }
 
 function cursor() {
@@ -234,11 +237,40 @@ function lookbook() {
   const track = section?.querySelector<HTMLElement>('[data-htrack]')
   if (!section || !track) return
   const distance = () => track.scrollWidth - window.innerWidth
-  const tween = gsap.to(track, {
-    x: () => -distance(),
-    ease: 'none',
-    scrollTrigger: { trigger: section, start: 'top top', end: () => `+=${distance()}`, pin: true, scrub: 0.8, invalidateOnRefresh: true, anticipatePin: 1 },
+  // where each panel sits centred, as a share of the whole run
+  const stops = () => {
+    const d = distance()
+    const vw = window.innerWidth
+    return [...track.children].map((c) => {
+      const el = c as HTMLElement
+      return gsap.utils.clamp(0, 1, (el.offsetLeft + el.offsetWidth / 2 - vw / 2) / d)
+    })
+  }
+  let points = stops()
+  const HOLD = 0.35 // a rest on the last panel before the pin lets go
+  const tween = gsap.timeline({
+    scrollTrigger: {
+      trigger: section,
+      start: 'top top',
+      end: () => `+=${distance() * (1 + HOLD)}`,
+      pin: true,
+      scrub: 0.8,
+      invalidateOnRefresh: true,
+      anticipatePin: 1,
+      onRefresh: () => (points = stops()),
+      snap: {
+        snapTo: (v: number) => {
+          const p = Math.min(1, v * (1 + HOLD))
+          if (p >= 1) return v
+          const nearest = points.reduce((a, b) => (Math.abs(b - p) < Math.abs(a - p) ? b : a), points[0])
+          return nearest / (1 + HOLD)
+        },
+        duration: { min: 0.2, max: 0.6 },
+        ease: 'power2.inOut',
+      },
+    },
   })
+  tween.to(track, { x: () => -distance(), ease: 'none', duration: 1 }).to({}, { duration: HOLD })
   // the background dyes itself to each shoot's colour as it passes
   q('[data-lb-tone]', section).forEach((panel) => {
     ScrollTrigger.create({

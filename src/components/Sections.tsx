@@ -233,7 +233,7 @@ function MoreLines() {
             <Picture name={l.image} alt={`${l.title} on the showroom rail`} sizes="(min-width: 768px) 30vw, 100vw" className="aspect-[4/5] w-full object-cover opacity-85 transition-transform duration-[1.4s] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105" />
             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(29_23_18/0)_40%,rgb(29_23_18/0.9)_100%)]" />
             <div className="absolute inset-x-0 bottom-0 p-6">
-              <span className="font-mono text-xs tracking-[0.2em] text-turmeric uppercase">0{i + 1}</span>
+              <span className="font-mono text-xs tracking-[0.2em] text-ecru/80 uppercase">0{i + 1}</span>
               <p className="mt-1 font-display text-4xl">{l.title}</p>
               <p className="mt-2 max-w-xs text-sm text-ecru/85">{l.body}</p>
               <button type="button" onClick={() => toggle(l.id)} aria-pressed={has(l.id)} className={`btn mt-5 min-h-11 ${has(l.id) ? 'btn-ecru' : 'btn-line-light'}`}>
@@ -415,7 +415,7 @@ export function Award() {
       <div className="wrap relative grid items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
         <div className="relative mx-auto w-full max-w-[26rem]">
           <div className="overflow-hidden rounded-[1.5rem]" data-wipe>
-            <Picture name="award-trophy" alt="The Gold Winner trophy for Cultural Ambassador" sizes="(min-width: 1024px) 30vw, 90vw" className="aspect-square w-full object-cover" />
+            <Picture name="award-trophy" alt="The Gold Winner trophy for Cultural Ambassador" sizes="(min-width: 1024px) 30vw, 90vw" className="aspect-[4/5] w-full object-cover" />
           </div>
           <div className="absolute right-0 -bottom-10 w-[48%] rotate-3 overflow-hidden rounded-xl border-4 border-ecru shadow-2xl sm:-right-12" data-tilt>
             <Picture name="award-certificate" alt="The Indian Responsible Tourism State Awards 2025 certificate" sizes="20vw" className="aspect-square w-full object-cover" />
@@ -478,9 +478,9 @@ export function Visit() {
         </ol>
 
         <div className="mt-20 grid gap-8 lg:grid-cols-[1.4fr_1fr]">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 items-start gap-4">
             {showroom.images.map((n, i) => (
-              <div key={n} className={`overflow-hidden rounded-[1.25rem] ${i % 2 ? 'mt-10' : ''}`} data-wipe>
+              <div key={n} className={`self-start overflow-hidden rounded-[1.25rem] ${i % 2 ? 'mt-10' : ''}`} data-wipe>
                 <Picture name={n} alt="Inside the Ri & Last showroom" sizes="(min-width: 1024px) 28vw, 45vw" className="aspect-[3/4] w-full object-cover" />
               </div>
             ))}

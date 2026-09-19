@@ -52,7 +52,7 @@ export function Hero() {
       <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,rgb(29_23_18/0.92)_0%,rgb(29_23_18/0.6)_42%,rgb(29_23_18/0)_70%)] max-md:bg-[linear-gradient(180deg,rgb(29_23_18/0.2)_0%,rgb(29_23_18/0.55)_45%,rgb(29_23_18/0.95)_80%)]" />
 
       <div className="wrap relative flex h-full flex-col justify-end pb-10 sm:pb-14 md:justify-center md:pb-0">
-        <p data-hero-fade className="eyebrow text-turmeric">
+        <p data-hero-fade className="eyebrow self-start rounded-full text-turmeric max-md:bg-ink/75 max-md:px-3 max-md:py-1.5 max-md:backdrop-blur-sm max-md:before:hidden">
           {brand.line} · Khweng, Meghalaya
         </p>
         <h1 id="hero-title" data-hero-title className="mt-6 max-w-[13ch] text-[clamp(3.2rem,9vw,9.5rem)] leading-[0.92]">

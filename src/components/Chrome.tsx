@@ -44,7 +44,8 @@ function Nav() {
   return (
     <>
       <header className="pointer-events-none fixed inset-x-0 top-0 z-[100]">
-        <div className="wrap flex items-center justify-between gap-4 py-4">
+        <div aria-hidden data-header-scrim className="absolute inset-x-0 top-0 h-24 opacity-0 backdrop-blur-md transition-opacity duration-500 [mask-image:linear-gradient(180deg,#000_45%,transparent)]" />
+        <div className="wrap relative flex items-center justify-between gap-4 py-4">
           <a href="#top" className="pointer-events-auto rounded-full bg-ecru/90 px-5 py-2 text-xl shadow-[0_8px_30px_-16px_rgb(29_23_18/0.6)] backdrop-blur-md" aria-label="Ri & Last, back to the top">
             <Wordmark />
           </a>
@@ -157,8 +158,7 @@ function FloatingEnquire() {
   const channel = enquiryChannel()
   const [hide, setHide] = useState(true)
   useEffect(() => {
-    const phone = window.matchMedia('(max-width: 767px)').matches
-    const watch = [document.getElementById('top'), document.querySelector('footer'), phone ? document.querySelector('#collection ul') : null].filter(Boolean) as Element[]
+    const watch = [document.getElementById('top'), document.querySelector('footer'), document.querySelector('#collection ul'), document.getElementById('visit')].filter(Boolean) as Element[]
     const on = new Set<Element>()
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => (e.isIntersecting ? on.add(e.target) : on.delete(e.target)))
@@ -330,7 +330,7 @@ function PieceSheet() {
       <div onClick={() => show(null)} className={`absolute inset-0 bg-ink/70 backdrop-blur-sm transition-opacity duration-500 ${p ? 'opacity-100' : 'opacity-0'}`} />
       {p && (
         <div key={p.no} className="sheet-in absolute inset-x-3 top-3 bottom-3 grid overflow-y-auto rounded-[1.75rem] bg-ecru md:inset-x-8 md:top-8 md:bottom-8 md:grid-cols-[1fr_1fr] md:overflow-hidden lg:inset-x-[8vw]">
-          <div className="relative min-h-[60svh] overflow-hidden bg-ink md:min-h-0">
+          <div className="relative min-h-[42svh] overflow-hidden bg-ink md:min-h-0">
             <Picture name={p.image} alt={`Jainsem No. ${p.no}, ${p.name}, on a hanger in the showroom`} sizes="(min-width: 768px) 45vw, 100vw" className="sheet-img absolute inset-0 h-full w-full object-cover" eager />
             <span className="absolute top-5 left-5 rounded-full bg-ecru/90 px-3 py-1.5 font-mono text-xs tracking-[0.16em] uppercase backdrop-blur">No. {p.no}</span>
           </div>
