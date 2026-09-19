@@ -1,0 +1,245 @@
+@import 'tailwindcss';
+
+/* Zodiak and General Sans by Indian Type Foundry (Fontshare), ITF Free Font
+   License: commercial web use and self-hosting are permitted. */
+@font-face {
+  font-family: 'Zodiak';
+  src: url('/ri-and-last/fonts/zodiak-variable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Zodiak';
+  src: url('/ri-and-last/fonts/zodiak-variable-italic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'General Sans';
+  src: url('/ri-and-last/fonts/general-sans-variable.woff2') format('woff2');
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*
+ * Colours taken from the cloth itself: undyed Eri ecru, the loam of the dye
+ * pots, and the dyes of the collection (madder red, indigo, lilac, turmeric,
+ * leaf green).
+ */
+@theme {
+  --color-ecru: #f2ebdd;
+  --color-card: #fbf7ef;
+  --color-ink: #1d1712;
+  --color-ink-soft: #5e5247;
+  --color-madder: #9e2b25;
+  --color-madder-deep: #7a1f1a;
+  --color-indigo: #233a86;
+  --color-lilac: #c79ab8;
+  --color-lilac-soft: #ecdbe6;
+  --color-turmeric: #d9962b;
+  --color-leaf: #4f6b35;
+
+  --font-display: 'Zodiak', Georgia, 'Times New Roman', serif;
+  --font-sans: 'General Sans', ui-sans-serif, system-ui, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    background: var(--color-ecru);
+  }
+  html,
+  body {
+    overflow-x: clip;
+  }
+  body {
+    @apply bg-ecru font-sans text-ink antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+    line-height: 0.98;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-madder);
+    outline-offset: 4px;
+  }
+  ::selection {
+    background: var(--color-lilac);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-[90rem] px-5 sm:px-8 lg:px-12;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-3 font-mono text-[0.72rem] font-medium tracking-[0.26em] uppercase;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 2.25rem;
+    height: 1px;
+    background: currentColor;
+  }
+  .btn {
+    @apply relative inline-flex min-h-12 items-center justify-center gap-2.5 overflow-hidden rounded-full px-6 text-[0.95rem] font-medium whitespace-nowrap transition-[color,background-color,border-color,transform] duration-300;
+  }
+  .btn-ink {
+    @apply bg-ink text-ecru hover:bg-madder;
+  }
+  .btn-madder {
+    @apply bg-madder text-ecru hover:bg-ink;
+  }
+  .btn-ecru {
+    @apply bg-ecru text-ink hover:bg-lilac;
+  }
+  .btn-line {
+    @apply border border-current hover:bg-ink hover:text-ecru hover:border-ink;
+  }
+  .btn-line-light {
+    @apply border border-ecru/60 text-ecru hover:bg-ecru hover:text-ink;
+  }
+}
+
+/* Paper grain over everything, kept inside the viewport */
+.grain-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  overflow: hidden;
+  pointer-events: none;
+}
+.grain {
+  position: absolute;
+  inset: -50%;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+html[data-motion='on'] .grain {
+  animation: grain 1.2s steps(6) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-4%, 3%); }
+  40% { transform: translate(3%, -2%); }
+  60% { transform: translate(-2%, -4%); }
+  80% { transform: translate(4%, 2%); }
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+}
+
+/* Split-text masks keep descenders */
+.split-line-mask,
+.split-word-mask {
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+/* The thread: a line that is sewn down the page as you scroll */
+.thread path {
+  fill: none;
+  stroke: var(--color-madder);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+/* Product cards */
+.piece-card {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.piece-img {
+  transition:
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.8s ease;
+}
+.piece-card:hover .piece-img {
+  transform: scale(1.06);
+}
+.piece-sheen {
+  background: linear-gradient(115deg, transparent 30%, rgb(255 255 255 / 0.35) 48%, transparent 62%);
+  transform: translateX(-120%);
+  transition: transform 1.1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.piece-card:hover .piece-sheen {
+  transform: translateX(120%);
+}
+
+/* Drawer and sheet */
+html.sheet-open {
+  overflow: hidden;
+}
+
+/* Scroll cue */
+@keyframes cue {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(200%); }
+}
+
+/* Motion off: everything readable and still */
+html[data-motion='off'] [data-reveal],
+html[data-motion='off'] [data-split] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+html[data-motion='off'] [data-hscroll] {
+  height: auto !important;
+}
+html[data-motion='off'] [data-hscroll] [data-htrack] {
+  flex-wrap: wrap;
+  width: auto !important;
+  transform: none !important;
+}
+
+/* The piece sheet opens like a curtain and the photo settles */
+.sheet-in {
+  animation: sheet-in 0.8s cubic-bezier(0.76, 0, 0.24, 1) both;
+}
+.sheet-in .sheet-img {
+  animation: sheet-img 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes sheet-in {
+  from { clip-path: inset(100% 0 0 0 round 1.75rem); }
+  to { clip-path: inset(0 0 0 0 round 1.75rem); }
+}
+@keyframes sheet-img {
+  from { transform: scale(1.25); }
+  to { transform: none; }
+}
+html[data-motion='off'] .sheet-in,
+html[data-motion='off'] .sheet-in .sheet-img {
+  animation: none;
+}
+
+/* A still woven panel behind the WebGL cloth, for first paint and no-WebGL */
+.hero-fallback {
+  background:
+    linear-gradient(0deg, transparent 12%, #f2ebdd 12% 12.6%, transparent 12.6% 22%, #d9962b 22% 23%, transparent 23% 31%, #f2ebdd 31% 31.5%, transparent 31.5%),
+    repeating-linear-gradient(90deg, rgb(0 0 0 / 0.08) 0 1px, transparent 1px 5px),
+    #9e2b25;
+  opacity: 0.9;
+}
+[data-hero][data-cloth='ready'] .hero-fallback {
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+/* Current section in the nav */
+[data-nav].is-active {
+  background: var(--color-ink);
+  color: var(--color-ecru);
+}

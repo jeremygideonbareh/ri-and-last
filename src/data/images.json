@@ -1,0 +1,377 @@
+{
+ "indigo-1": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "indigo-2": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "indigo-3": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "indigo-4": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "indigo-5": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "indigo-6": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "lavender-1": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "lavender-2": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "lavender-3": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "lavender-4": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.7502
+ },
+ "lavender-5": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "lavender-6": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "lavender-7": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "lavender-8": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "loom-pair": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "dye-leaves": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "yarn-skein": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "spinning-mill": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "bobbins": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "warping-wheel": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "warp-pink": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "weaving-pink": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "stole-rack": {
+  "widths": [
+   480,
+   800,
+   1280,
+   1920
+  ],
+  "ratio": 0.75
+ },
+ "award-stage": {
+  "widths": [
+   480,
+   800,
+   1280
+  ],
+  "ratio": 1.0
+ },
+ "award-certificate-pair": {
+  "widths": [
+   480,
+   800,
+   1280
+  ],
+  "ratio": 1.0
+ },
+ "award-tourism-day": {
+  "widths": [
+   480,
+   800,
+   1280
+  ],
+  "ratio": 1.0
+ },
+ "award-ceremony": {
+  "widths": [
+   480,
+   800,
+   1280
+  ],
+  "ratio": 1.0
+ },
+ "award-certificate": {
+  "widths": [
+   480,
+   800,
+   1280
+  ],
+  "ratio": 1.0
+ },
+ "award-trophy": {
+  "widths": [
+   480,
+   800,
+   1280
+  ],
+  "ratio": 1.0
+ },
+ "shawl-motif-pink": {
+  "widths": [
+   480,
+   800,
+   1217
+  ],
+  "ratio": 0.5634
+ },
+ "stoles-showroom": {
+  "widths": [
+   480,
+   800,
+   1217
+  ],
+  "ratio": 0.5634
+ },
+ "jainsem-ivory-border": {
+  "widths": [
+   480,
+   800,
+   1215
+  ],
+  "ratio": 0.5625
+ },
+ "showroom-ivory": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.5634
+ },
+ "jainsem-ivory-model": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.5634
+ },
+ "lavender-reel": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.5634
+ },
+ "collection-rack": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.55
+ },
+ "jainsem-01": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.55
+ },
+ "jainsem-02": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.55
+ },
+ "jainsem-03": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.55
+ },
+ "jainsem-04": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.55
+ },
+ "jainsem-05": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.55
+ },
+ "jainsem-06": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.55
+ },
+ "jainsem-07": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.55
+ },
+ "jainsem-08": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.55
+ },
+ "jainsem-09": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.55
+ },
+ "jainsem-10": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.55
+ },
+ "jainsem-11": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.55
+ },
+ "jainsem-12": {
+  "widths": [
+   480
+  ],
+  "ratio": 0.55
+ }
+}
